@@ -1,14 +1,13 @@
 package com.sa.clientmicroservice.client.infraestructure.output.adapter.db;
 
 import com.sa.clientmicroservice.client.domain.ClientDomain;
-import com.sa.clientmicroservice.client.infraestructure.output.port.db.CreateClientOutputPort;
-import com.sa.clientmicroservice.client.infraestructure.output.port.db.ExistsClientOutputPort;
-import com.sa.clientmicroservice.client.infraestructure.output.port.db.ListClientsOutputPort;
-import com.sa.clientmicroservice.client.infraestructure.output.port.db.UpdateClienteOutputPort;
+import com.sa.clientmicroservice.client.infraestructure.output.port.db.*;
 import com.sa.clientmicroservice.common.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
@@ -17,7 +16,9 @@ public class ClientDbEntityOutputAdapter
         CreateClientOutputPort,
         ExistsClientOutputPort,
         UpdateClienteOutputPort,
-        ListClientsOutputPort {
+        ListClientsOutputPort,
+        FindClientByUuidOutputPort
+{
 
     private final ClientDBEntityRepository clientDBEntityRepository;
 
@@ -47,5 +48,10 @@ public class ClientDbEntityOutputAdapter
     public List<ClientDomain> listClients() {
         return clientDBEntityRepository.findAll()
                 .stream().map(ClientDbEntity::ToDomain).toList();
+    }
+
+    @Override
+    public Optional<ClientDomain> FindClientByUuid(UUID clientId) {
+        return clientDBEntityRepository.findById(clientId).map(ClientDbEntity::ToDomain);
     }
 }

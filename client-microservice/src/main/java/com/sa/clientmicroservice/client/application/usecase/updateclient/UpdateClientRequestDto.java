@@ -1,5 +1,6 @@
 package com.sa.clientmicroservice.client.application.usecase.updateclient;
 
+import com.sa.clientmicroservice.client.domain.ClientDomain;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
@@ -26,4 +27,13 @@ public record UpdateClientRequestDto(
         @Size(max = 15, message = "The phone number must have a maximum of 15 characters")
         String phoneNumber
 ) {
+        public ClientDomain ToDomain() {
+                return ClientDomain.builder()
+                        .nit(nit)
+                        .fullName(fullName)
+                        .birthDate(birthDate)
+                        .email(email)
+                        .phoneNumber(phoneNumber)
+                        .build();
+        }
 }

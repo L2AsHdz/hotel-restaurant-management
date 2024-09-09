@@ -1,4 +1,4 @@
-package com.sa.clientmicroservice.client.application.usecase.listclient;
+package com.sa.clientmicroservice.client.application.usecase.listclients;
 
 import com.sa.clientmicroservice.client.domain.ClientDomain;
 import com.sa.clientmicroservice.client.infraestructure.input.port.ListClientsInputPort;

@@ -1,5 +1,8 @@
-package com.sa.clientmicroservice.common.application.exception;
+package com.sa.clientmicroservice.common.infraestructure;
 
+import com.sa.clientmicroservice.common.application.exception.ClientMicroserviceException;
+import com.sa.clientmicroservice.common.application.exception.DuplicatedEntityException;
+import com.sa.clientmicroservice.common.application.exception.EntityNotFoudException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
